@@ -11,4 +11,4 @@ kramdown:
   syntax_highlighter: rouge
 minima:
   skin: auto
-  nav_pages:
+  nav_pages: README.md
