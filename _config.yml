@@ -1,14 +1,26 @@
-lsi: false
+title: Android-on-Android Virtualization
+description: >-
+  A clean-room research base on running a second Android system as a normal
+  app: the official Android emulator, twoyi, Virtual Master and VMOS Pro.
+
+# GitHub Pages ships minima 2.5.x, so keep the theme declaration plain and only
+# use options that version understands (do not add minima 3.x `skin`/`nav_pages`).
+theme: minima
 safe: true
-source: /
 incremental: false
 highlighter: rouge
-theme: minima
-gist:
-  noscript: false
+
+# Every document begins with its own `# Heading`, and README.md is already the
+# complete index. Render all pages with minima's bare `default` layout so the
+# theme does not print `page.title` again as a second H1 (and does not inject a
+# home-page post listing).
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
+
 kramdown:
   math_engine: mathjax
   syntax_highlighter: rouge
-minima:
-  skin: auto
-  nav_pages: README.md
