@@ -1,0 +1,14 @@
+{%- comment -%}
+  Minima's stock header renders the site title plus a nav list built from
+  `site.pages`, which on this site means a 23-entry navbar. README.md is the
+  index already and each document starts with its own H1, so this override
+  drops the nav entirely and keeps only a compact link back to the index.
+  The index page itself gets no header, so its H1 is not duplicated.
+{%- endcomment -%}
+{%- if page.url != "/" -%}
+<header class="site-header" role="banner">
+  <div class="wrapper">
+    <a class="site-title" rel="author" href="{{ "/" | relative_url }}">{{ site.title | escape }}</a>
+  </div>
+</header>
+{%- endif -%}
