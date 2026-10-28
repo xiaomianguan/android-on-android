@@ -1,0 +1,58 @@
+---
+# Only the main Sass file needs front matter (the dashes are enough)
+---
+
+@import "minima";
+
+/**
+ * Previous / next links appended by `_includes/doc-pagination.html`
+ */
+.doc-pager {
+  display: flex;
+  gap: $spacing-unit;
+  justify-content: space-between;
+  margin-top: $spacing-unit * 1.5;
+  padding-top: $spacing-unit / 2;
+  border-top: 1px solid $grey-color-light;
+
+  a {
+    display: block;
+    max-width: 48%;
+    color: $text-color;
+    text-decoration: none;
+
+    &:hover .doc-pager-title {
+      text-decoration: underline;
+    }
+  }
+
+  .doc-pager-next {
+    margin-left: auto;
+    text-align: right;
+  }
+
+  .doc-pager-label {
+    display: block;
+    font-size: $small-font-size;
+    color: $grey-color;
+  }
+
+  .doc-pager-title {
+    display: block;
+    color: $brand-color;
+  }
+
+  @include media-query($on-palm) {
+    flex-direction: column;
+    gap: $spacing-unit / 2;
+
+    a {
+      max-width: 100%;
+    }
+
+    .doc-pager-next {
+      margin-left: 0;
+      text-align: left;
+    }
+  }
+}

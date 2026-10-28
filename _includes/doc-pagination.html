@@ -1,0 +1,39 @@
+{%- comment -%}
+  Previous / next links for the numbered research documents (01-*.md through
+  22-*.md). The order is derived from `site.pages` sorted by file name, so no
+  front matter or navigation data has to be added to the Markdown sources.
+  Pages whose name does not start with "NN-" (e.g. README.md) render nothing.
+{%- endcomment -%}
+{%- assign docs = site.pages | sort: "name" -%}
+{%- assign prev_doc = nil -%}
+{%- assign next_doc = nil -%}
+{%- assign seen_current = false -%}
+{%- for doc in docs -%}
+  {%- assign marker = doc.name | slice: 2, 1 -%}
+  {%- if marker == "-" -%}
+    {%- if seen_current -%}
+      {%- assign next_doc = doc -%}
+      {%- break -%}
+    {%- elsif doc.name == page.name -%}
+      {%- assign seen_current = true -%}
+    {%- else -%}
+      {%- assign prev_doc = doc -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+{%- if seen_current -%}
+<nav class="doc-pager" aria-label="Document navigation">
+  {%- if prev_doc -%}
+  <a class="doc-pager-prev" rel="prev" href="{{ prev_doc.url | relative_url }}">
+    <span class="doc-pager-label">&larr; Previous</span>
+    <span class="doc-pager-title">{{ prev_doc.title | default: prev_doc.name | escape_once }}</span>
+  </a>
+  {%- endif -%}
+  {%- if next_doc -%}
+  <a class="doc-pager-next" rel="next" href="{{ next_doc.url | relative_url }}">
+    <span class="doc-pager-label">Next &rarr;</span>
+    <span class="doc-pager-title">{{ next_doc.title | default: next_doc.name | escape_once }}</span>
+  </a>
+  {%- endif -%}
+</nav>
+{%- endif -%}
